@@ -1,4 +1,4 @@
-# Sveltekit Auth
+# SvelteKit Auth
 
 Learn SvelteKit authentication using cookies.
 
