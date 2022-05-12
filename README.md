@@ -33,7 +33,7 @@ npx prisma db push
 🔎 Inspect your database with Prisma Studio
 
 ```
-pnpx prisma studio
+npx prisma studio
 ```
 
 ## Development
