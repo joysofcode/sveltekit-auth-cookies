@@ -15,7 +15,7 @@ export const handle: Handle = async ({
   }
 
   const session = await db.user.findUnique({
-    where: { id: cookies.session },
+    where: { userAuthToken: cookies.session },
   })
 
   if (session) {
