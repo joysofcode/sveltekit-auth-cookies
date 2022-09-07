@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
+body {
+	padding: 1rem;
+	font-family: 'Inter';
+	color: hsl(220 20% 98%);
+	background-color: hsl(220 20% 14%);
+}
+
+form {
+	margin: 2rem 0;
+	display: grid;
+	justify-content: start;
+	row-gap: 1rem;
+}
+
+label {
+	display: block;
+	margin-bottom: 0.4rem;
+	color: hsl(220 20% 80%);
+}
+
+input,
+button {
+	padding: 1rem;
+	font: inherit;
+	color: inherit;
+	background-color: hsl(220 20% 20%);
+	border: none;
+	border-radius: 1rem;
+	border: 1px solid hsl(220 20% 28%);
+}
+
+button {
+	margin-top: 0.4rem;
+	font-weight: 700;
+	cursor: pointer;
+	max-width: 140px;
+}
+
+nav {
+	display: flex;
+	gap: 1rem;
+	margin-bottom: 2rem;
+}
+
+a {
+	color: inherit;
+}
+
+nav a {
+	text-decoration: none;
+}
+
+nav a:hover {
+	text-decoration: underline;
+}
+
+.error {
+	color: tomato;
+}
+
+.success {
+	color: palegreen;
+}
