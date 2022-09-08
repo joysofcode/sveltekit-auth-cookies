@@ -10,14 +10,14 @@
 
 <nav>
 	{#if !$page.data.user}
-		<a href="/auth/login">Login</a>
-		<a href="/auth/register">Register</a>
+		<a href="/login">Login</a>
+		<a href="/register">Register</a>
 	{/if}
 
 	{#if $page.data.user}
 		<a href="/">Home</a>
 		<a href="/admin">Admin</a>
-		<a href="/auth/logout">Log out</a>
+		<a href="/logout">Log out</a>
 	{/if}
 </nav>
 
