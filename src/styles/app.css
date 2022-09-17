@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
 
 body {
-	padding: 1rem;
-	font-family: 'Inter';
+	margin: 0;
+	font-family: 'Inter', sans-serif;
 	color: hsl(220 20% 98%);
 	background-color: hsl(220 20% 14%);
 }
@@ -41,25 +41,18 @@ button {
 nav {
 	display: flex;
 	gap: 1rem;
-	margin-bottom: 2rem;
+	padding: 2rem;
 }
 
 a {
 	color: inherit;
-}
-
-nav a {
 	text-decoration: none;
 }
 
-nav a:hover {
+a:hover {
 	text-decoration: underline;
 }
 
 .error {
 	color: tomato;
-}
-
-.success {
-	color: palegreen;
 }

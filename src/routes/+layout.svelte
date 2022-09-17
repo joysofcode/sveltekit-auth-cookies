@@ -21,4 +21,12 @@
 	{/if}
 </nav>
 
-<slot />
+<main>
+	<slot />
+</main>
+
+<style>
+	main {
+		padding: 0 2rem;
+	}
+</style>
