@@ -38,7 +38,13 @@ export const actions: Actions = {
 			return invalid(400, { credentials: true })
 		}
 
-		cookies.set('session', user.userAuthToken, {
+		// generate new auth token to be secure
+		const authenticatedUser = await db.user.update({
+			where: { username: user.username },
+			data: { userAuthToken: crypto.randomUUID() },
+		})
+
+		cookies.set('session', authenticatedUser.userAuthToken, {
 			// send cookie for every page
 			path: '/',
 			// server side only cookie so you can't use `document.cookie`

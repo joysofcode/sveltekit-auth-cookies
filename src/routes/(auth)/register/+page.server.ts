@@ -38,6 +38,7 @@ export const actions: Actions = {
 			data: {
 				username,
 				passwordHash: await bcrypt.hash(password, 10),
+				userAuthToken: crypto.randomUUID(),
 			},
 		})
 

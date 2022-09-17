@@ -16,5 +16,5 @@ model User {
   updatedAt     DateTime @updatedAt
   username      String   @unique
   passwordHash  String
-  userAuthToken String   @unique @default(cuid())
+  userAuthToken String   @unique
 }
