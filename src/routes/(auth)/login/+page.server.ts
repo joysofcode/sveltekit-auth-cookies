@@ -57,5 +57,8 @@ export const actions: Actions = {
 			// set cookie to expire after a month
 			maxAge: 60 * 60 * 24 * 30,
 		})
+
+		// redirect the user
+		throw redirect(302, '/')
 	},
 }

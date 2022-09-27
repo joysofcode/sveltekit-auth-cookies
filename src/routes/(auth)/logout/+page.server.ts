@@ -12,4 +12,7 @@ export const load: PageServerLoad = async ({ cookies, locals }) => {
 		path: '/',
 		expires: new Date(0),
 	})
+
+	// redirect the user
+	throw redirect(302, '/login')
 }
