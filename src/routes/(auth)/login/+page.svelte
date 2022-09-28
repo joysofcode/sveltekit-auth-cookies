@@ -12,7 +12,13 @@
 	method="POST"
 	use:enhance={() => {
 		return async ({ result }) => {
+			// rerun the `load` function for the page
+			// https://kit.svelte.dev/docs/modules#$app-navigation-invalidateall
 			invalidateAll()
+
+			// since we're customizing the default behaviour
+			// we don't want to reimplement what `use:enhance` does
+			// so we can use `applyResult` and pass the `result`
 			await applyAction(result)
 		}
 	}}
