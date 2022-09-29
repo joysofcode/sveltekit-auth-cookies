@@ -4,50 +4,52 @@ Learn SvelteKit authentication using cookies.
 
 ## Project Setup
 
-🧑‍🤝‍🧑 Clone the project
+### 🧑‍🤝‍🧑 Clone the project
 
 ```sh
 git clone https://github.com/joysofcode/sveltekit-auth-cookies.git
 ```
 
-📦️ Install dependencies
+### 📦️ Install dependencies
+
+You can use `npm` or `yarn`.
 
 ```sh
-npm i
+pnpm i
 ```
 
 ## Database
 
-✏️ Rename `.env.example` to `.env`
+### ✏️ Rename `.env.example` to `.env`
 
 ```
 DATABASE_URL="file:./dev.db"
 ```
 
-🔨 Create the database from the Prisma schema
+### 🔨 Create the database from the Prisma schema
 
 ```sh
-npx prisma db push
+pnpx prisma db push
 ```
 
-🔎 Inspect your database with Prisma Studio
+### 🔎 Inspect your database with Prisma Studio
 
 ```
-npx prisma studio
+pnpx prisma studio
 ```
 
 ## Development
 
-🦄 Start the project and open http://localhost:3000/
+### 🦄 Start the project and open http://localhost:5173/
 
 ```sh
-npm run dev
+pnpm run dev
 ```
 
 ## Production
 
-🔨 Build and preview
+### 🔨 Build and preview
 
 ```sh
-npm run build && npm run preview
+pnpm run build && pnpm run preview
 ```
