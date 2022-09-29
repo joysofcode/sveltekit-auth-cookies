@@ -7,6 +7,10 @@ body {
 	background-color: hsl(220 20% 14%);
 }
 
+main {
+	padding: 0 2rem;
+}
+
 form {
 	margin: 2rem 0;
 	display: grid;
@@ -50,6 +54,22 @@ a {
 }
 
 a:hover {
+	text-decoration: underline;
+}
+
+.logout {
+	margin: 0;
+}
+
+.logout button {
+	margin: 0;
+	padding: 0;
+	font-weight: 400;
+	background: none;
+	border: none;
+}
+
+.logout button:hover {
 	text-decoration: underline;
 }
 
