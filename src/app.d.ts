@@ -3,7 +3,10 @@
 // and what to do when importing types
 declare namespace App {
 	interface Locals {
-		user: string | null
+		user: {
+			name: string
+			role: string
+		}
 	}
 
 	// interface PageData {}

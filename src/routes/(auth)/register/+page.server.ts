@@ -4,6 +4,13 @@ import bcrypt from 'bcrypt'
 
 import { db } from '$lib/database'
 
+// using an enum for user roles to avoid typos
+// if you're not using TypeScript use an object
+enum Roles {
+	ADMIN = 'ADMIN',
+	USER = 'USER',
+}
+
 export const load: PageServerLoad = async ({ locals }) => {
 	// redirect user if logged in
 	if (locals.user) {
@@ -38,6 +45,7 @@ const register: Action = async ({ request }) => {
 			username,
 			passwordHash: await bcrypt.hash(password, 10),
 			userAuthToken: crypto.randomUUID(),
+			role: { connect: { name: Roles.USER } },
 		},
 	})
 
