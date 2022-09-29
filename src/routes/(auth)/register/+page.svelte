@@ -7,7 +7,7 @@
 
 <h1>Register</h1>
 
-<form method="POST" use:enhance>
+<form action="?/register" method="POST" use:enhance>
 	<div>
 		<label for="username">Username</label>
 		<input id="username" name="username" type="text" required />

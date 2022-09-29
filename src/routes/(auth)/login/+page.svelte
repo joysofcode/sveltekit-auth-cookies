@@ -9,6 +9,7 @@
 <h1>Login</h1>
 
 <form
+	action="?/login"
 	method="POST"
 	use:enhance={() => {
 		return async ({ result }) => {
