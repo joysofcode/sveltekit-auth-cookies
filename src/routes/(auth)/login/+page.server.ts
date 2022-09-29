@@ -37,7 +37,7 @@ const login: Action = async ({ cookies, request }) => {
 		return invalid(400, { credentials: true })
 	}
 
-	// generate new auth token to be secure
+	// generate new auth token just in case
 	const authenticatedUser = await db.user.update({
 		where: { username: user.username },
 		data: { userAuthToken: crypto.randomUUID() },
