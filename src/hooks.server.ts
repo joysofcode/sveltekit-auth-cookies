@@ -1,13 +1,29 @@
 import type { Handle } from '@sveltejs/kit'
 import { db } from '$lib/database'
 
-// custom redirect
-function redirect(location: string) {
-	return new Response(undefined, {
-		status: 303,
-		headers: { location },
-	})
-}
+/*
+	You can use a custom redirect if you want...
+
+	function redirect(location: string) {
+		return new Response(undefined, {
+			status: 303,
+			headers: { location },
+		})
+	}
+
+	...and redirect pages inside hooks.server.ts
+
+	if (!session) {
+		if (event.url.pathname === '/admin') {
+			return redirect('/')
+		}
+
+		return await resolve(event)
+	}
+
+	...but doing it inside `load` for the protected
+	routes you can invalidate the data on the page
+*/
 
 export const handle: Handle = async ({ event, resolve }) => {
 	// get cookies from browser
@@ -15,12 +31,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 
 	// if there is no session
 	if (!session) {
-		// redirect protected pages
-		if (event.url.pathname === '/admin') {
-			return redirect('/')
-		}
-
-		// or load page as normal
+		// load page as normal
 		return await resolve(event)
 	}
 
@@ -33,11 +44,6 @@ export const handle: Handle = async ({ event, resolve }) => {
 	// if `user` exists set `events.local`
 	if (user) {
 		event.locals.user = user.username
-	} else {
-		// make sure nothing weird is going on
-		if (event.url.pathname === '/admin') {
-			return redirect('/')
-		}
 	}
 
 	// load page as normal
