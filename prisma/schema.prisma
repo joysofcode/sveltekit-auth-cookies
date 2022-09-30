@@ -11,10 +11,33 @@ datasource db {
 }
 
 model User {
-  id            String   @id @default(uuid())
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
-  username      String   @unique
+  id            String @id @default(uuid())
+  username      String @unique
   passwordHash  String
-  userAuthToken String   @unique @default(cuid())
+  userAuthToken String @unique
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  role   Roles @relation(fields: [roleId], references: [id])
+  roleId Int
 }
+
+model Roles {
+  id   Int    @id @default(autoincrement())
+  name String @unique
+  User User[]
+}
+
+// Use enums when you change database
+// because SQLite doesn't support it
+// https://www.prisma.io/docs/reference/database-reference/database-features#misc
+
+// model User {
+//   role Role @default(USER)
+// }
+
+// enum Role {
+//   USER
+//   ADMIN
+// }
