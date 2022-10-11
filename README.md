@@ -38,6 +38,10 @@ pnpx prisma db push
 pnpx prisma studio
 ```
 
+### 🧑 Add user roles
+
+Open Prisma Studio at http://localhost:5555/ and inside the **Roles** table press **Add record** to add the **ADMIN** and **USER** roles by entering the role name and pressing **Save** for each one.
+
 ## Development
 
 ### 🦄 Start the project and open http://localhost:5173/
