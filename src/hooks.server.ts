@@ -1,5 +1,5 @@
 import type { Handle } from '@sveltejs/kit'
-import { db } from '$lib/database'
+import { db } from '$lib/server/database'
 
 /*
 	You can use a custom redirect if you want...
