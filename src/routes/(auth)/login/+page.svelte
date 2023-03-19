@@ -1,9 +1,8 @@
 <script lang="ts">
 	import { applyAction, enhance } from '$app/forms'
 	import { invalidateAll } from '$app/navigation'
-	import type { ActionData } from './$types'
 
-	export let form: ActionData
+	export let form
 </script>
 
 <h1>Login</h1>

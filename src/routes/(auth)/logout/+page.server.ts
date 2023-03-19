@@ -1,13 +1,12 @@
 import { redirect } from '@sveltejs/kit'
-import type { Actions, PageServerLoad } from './$types'
 
-export const load: PageServerLoad = async () => {
+export const load = async () => {
 	// we only use this endpoint for the api
 	// and don't need to see the page
 	throw redirect(302, '/')
 }
 
-export const actions: Actions = {
+export const actions = {
 	default({ cookies }) {
 		// eat the cookie
 		cookies.set('session', '', {
