@@ -1,8 +1,8 @@
-import { invalid, redirect } from '@sveltejs/kit'
+import { fail, redirect } from '@sveltejs/kit'
 import type { Action, Actions, PageServerLoad } from './$types'
 import bcrypt from 'bcrypt'
 
-import { db } from '$lib/database'
+import { db } from '$lib/server/database'
 
 // using an enum for user roles to avoid typos
 // if you're not using TypeScript use an object
@@ -29,7 +29,7 @@ const register: Action = async ({ request }) => {
 		!username ||
 		!password
 	) {
-		return invalid(400, { invalid: true })
+		return fail(400, { invalid: true })
 	}
 
 	const user = await db.user.findUnique({
@@ -37,7 +37,7 @@ const register: Action = async ({ request }) => {
 	})
 
 	if (user) {
-		return invalid(400, { user: true })
+		return fail(400, { user: true })
 	}
 
 	await db.user.create({

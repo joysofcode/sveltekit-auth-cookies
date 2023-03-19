@@ -1,10 +1,10 @@
-import { invalid, redirect } from '@sveltejs/kit'
+import { fail, redirect } from '@sveltejs/kit'
 import bcrypt from 'bcrypt'
 import type { Action, Actions, PageServerLoad } from './$types'
 
-import { db } from '$lib/database'
+import { db } from '$lib/server/database'
 
-export const load: PageServerLoad = async ({ locals }) => {
+export const load = async ({ locals }) => {
 	// redirect user if logged in
 	if (locals.user) {
 		throw redirect(302, '/')
@@ -22,19 +22,19 @@ const login: Action = async ({ cookies, request }) => {
 		!username ||
 		!password
 	) {
-		return invalid(400, { invalid: true })
+		return fail(400, { invalid: true })
 	}
 
 	const user = await db.user.findUnique({ where: { username } })
 
 	if (!user) {
-		return invalid(400, { credentials: true })
+		return fail(400, { credentials: true })
 	}
 
 	const userPassword = await bcrypt.compare(password, user.passwordHash)
 
 	if (!userPassword) {
-		return invalid(400, { credentials: true })
+		return fail(400, { credentials: true })
 	}
 
 	// generate new auth token just in case
