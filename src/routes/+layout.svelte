@@ -1,6 +1,5 @@
 <script lang="ts">
-	import { applyAction, enhance } from '$app/forms'
-	import { invalidateAll } from '$app/navigation'
+	import { enhance } from '$app/forms'
 	import { page } from '$app/stores'
 
 	import '../styles/app.css'
@@ -19,17 +18,7 @@
 	{#if $page.data.user}
 		<a href="/admin">Admin</a>
 
-		<form
-			class="logout"
-			action="/logout"
-			method="POST"
-			use:enhance={() => {
-				return async ({ result }) => {
-					invalidateAll()
-					await applyAction(result)
-				}
-			}}
-		>
+		<form class="logout" action="/logout" method="POST" use:enhance>
 			<button type="submit">Log out</button>
 		</form>
 	{/if}

@@ -1,28 +1,12 @@
 <script lang="ts">
 	import { applyAction, enhance } from '$app/forms'
-	import { invalidateAll } from '$app/navigation'
 
 	export let form
 </script>
 
 <h1>Login</h1>
 
-<form
-	action="?/login"
-	method="POST"
-	use:enhance={() => {
-		return async ({ result }) => {
-			// rerun the `load` function for the page
-			// https://kit.svelte.dev/docs/modules#$app-navigation-invalidateall
-			invalidateAll()
-
-			// since we're customizing the default behaviour
-			// we don't want to reimplement what `use:enhance` does
-			// so we can use `applyResult` and pass the `result`
-			await applyAction(result)
-		}
-	}}
->
+<form action="?/login" method="POST" use:enhance>
 	<div>
 		<label for="username">Username</label>
 		<input id="username" name="username" type="text" required />
