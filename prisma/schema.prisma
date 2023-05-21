@@ -27,7 +27,8 @@ model User {
 }
 
 model Session {
-  id        String   @id @unique @default(uuid())
+  id          String @id @unique @default(uuid())
+  manipulator String @unique @default(uuid())
   createdAt DateTime @default(now())
   expiresAt DateTime
   userId    String

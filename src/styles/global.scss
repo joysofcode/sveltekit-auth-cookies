@@ -1,10 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
 
+:root {
+	--text: hsl(220 20% 98%);
+	--background: hsl(220 20% 14%);
+	--labelText: hsl(220 20% 80%);
+	--modalBg: hsl(220 20% 20%);
+	--modalBorder: hsl(220 20% 28%);
+}
+
 body {
 	margin: 0;
 	font-family: 'Inter', sans-serif;
-	color: hsl(220 20% 98%);
-	background-color: hsl(220 20% 14%);
+	color: var(--text);
+	background-color: var(--background);
 }
 
 main {
@@ -21,7 +29,7 @@ form {
 label {
 	display: block;
 	margin-bottom: 0.4rem;
-	color: hsl(220 20% 80%);
+	color: var(--labelText);
 }
 
 input,
@@ -30,10 +38,10 @@ button,
 	padding: 1rem;
 	font: inherit;
 	color: inherit;
-	background-color: hsl(220 20% 20%);
+	background-color: var(--modalBg);
 	border: none;
 	border-radius: 1rem;
-	border: 1px solid hsl(220 20% 28%);
+	border: 1px solid var(--modalBorder);
 }
 
 button {

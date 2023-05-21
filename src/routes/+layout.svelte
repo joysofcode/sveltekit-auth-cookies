@@ -3,13 +3,13 @@
 	import { page } from '$app/stores'
 	import Avatar from '$lib/client/ui/Avatar.svelte'
 
-	import '../styles/app.css'
-
 	let modalVisible = false
 
 	const toggleModalVisibility = () => {
 		modalVisible = !modalVisible
 	}
+
+	import '../styles/global.scss'
 </script>
 
 <svelte:head>
@@ -36,7 +36,7 @@
 				{#if $page.data.user.role === 'ADMIN'}
 					<a href="/admin">Admin</a>
 				{/if}
-				<a href="/profile">Edit Profile</a>
+				<a href="/settings">Settings</a>
 				<form class="logout" action="/logout" method="POST">
 					<button type="submit">Log out</button>
 				</form>
@@ -67,12 +67,21 @@
 				padding: none;
 			}
 			.modal {
+				z-index: 5;
+				background-color: var(--modalBg);
 				width: 200px;
 				transform: translateX(calc(-50% - 2rem));
 				position: absolute;
 				display: none;
 				flex-direction: column;
-				&.visible {
+				&.visible{
+					display: flex;
+					gap: 8px;
+					padding: 16px;
+				}
+			}
+			&:focus {
+				.modal {
 					display: flex;
 					gap: 8px;
 					padding: 16px;
