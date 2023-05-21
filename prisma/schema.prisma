@@ -11,16 +11,25 @@ datasource db {
 }
 
 model User {
-  id            String @id @default(uuid())
-  username      String @unique
-  passwordHash  String
-  userAuthToken String @unique
+  id           String @id @default(uuid())
+  username     String @unique
+  passwordHash String
+
+  sessions Session[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   role   Roles @relation(fields: [roleId], references: [id])
   roleId Int
+}
+
+model Session {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  expiresAt DateTime
+  userId    String
+  User      User     @relation(references: [id], fields: [userId])
 }
 
 model Roles {

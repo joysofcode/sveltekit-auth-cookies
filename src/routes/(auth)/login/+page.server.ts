@@ -38,12 +38,22 @@ export const actions = {
 		}
 
 		// generate new auth token just in case
-		const authenticatedUser = await db.user.update({
-			where: { username: user.username },
-			data: { userAuthToken: crypto.randomUUID() },
+		// const authenticatedUser = await db.user.update({
+		// 	where: { username: user.username },
+		// 	data: { userAuthToken: crypto.randomUUID() },
+		// })
+
+		// create a new session
+		const session = await db.session.create({
+			data: {
+				expiresAt: new Date(Date.now() + 1000 * 60 * 60 * 24 * 30),
+				userId: user.id,
+			}
 		})
 
-		cookies.set('session', authenticatedUser.userAuthToken, {
+		console.log(session)
+
+		cookies.set('session', session.id, {
 			// send cookie for every page
 			path: '/',
 			// server side only cookie so you can't use `document.cookie`

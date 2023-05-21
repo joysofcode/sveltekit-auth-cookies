@@ -7,7 +7,7 @@ export const load = async () => {
 }
 
 export const actions = {
-	default({ cookies }) {
+	default: ({ cookies }) => {
 		// eat the cookie
 		cookies.set('session', '', {
 			path: '/',

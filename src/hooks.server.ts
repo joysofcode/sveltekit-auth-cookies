@@ -35,10 +35,31 @@ export const handle: Handle = async ({ event, resolve }) => {
 	}
 
 	// find the user based on the session
-	const user = await db.user.findUnique({
-		where: { userAuthToken: session },
-		select: { username: true, role: true },
+	let user = await db.session.findUnique({
+		where: { id: session },
+		select: { expiresAt: true, User: {select: {username: true, role: true}}},
 	})
+
+	if (!user) {
+		// if the session doesn't exist delete the cookie
+		event.cookies.set('session', '', {
+			path: '/',
+			expires: new Date(0),
+		})
+		return await resolve(event)
+	}
+
+	// if the session has expired
+	if (user?.expiresAt < new Date()) {
+		// delete the session
+		await db.session.delete({ where: { id: session } })
+		event.cookies.set('session', '', {
+			path: '/',
+			expires: new Date(0),
+		})
+		return await resolve(event)
+	}
+	user = user?.User
 
 	// if `user` exists set `events.local`
 	if (user) {
@@ -47,7 +68,6 @@ export const handle: Handle = async ({ event, resolve }) => {
 			role: user.role.name,
 		}
 	}
-
 	// load page as normal
 	return await resolve(event)
 }
