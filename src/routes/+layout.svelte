@@ -28,18 +28,21 @@
 	{#if $page.data.user}
 		<a href="/">Home</a>
 		
-		<div class="settingsContainer">
-			<button on:click={() => toggleModalVisibility()} on:mouseenter={() => modalVisible = true} on:mouseleave={() => modalVisible = false}>
-				<Avatar src={$page.data.user.avatar} size={50} />
-			</button>
-			<div class="modal" class:visible={modalVisible} on:mouseenter={() => modalVisible = true} on:mouseleave={() => modalVisible = false}>
-				{#if $page.data.user.role === 'ADMIN'}
-					<a href="/admin">Admin</a>
-				{/if}
-				<a href="/settings">Settings</a>
-				<form class="logout" action="/logout" method="POST">
-					<button type="submit">Log out</button>
-				</form>
+		<div class="rhs">
+			<a href="/profile">{$page.data.user.displayName}</a>
+			<div class="settingsContainer">
+				<button on:click={() => toggleModalVisibility()} on:mouseenter={() => modalVisible = true} on:mouseleave={() => modalVisible = false}>
+					<Avatar src={$page.data.user.avatar} size={50} />
+				</button>
+				<div class="modal" class:visible={modalVisible} on:mouseenter={() => modalVisible = true} on:mouseleave={() => modalVisible = false}>
+					{#if $page.data.user.role === 'ADMIN'}
+						<a href="/admin">Admin</a>
+					{/if}
+					<a href="/settings">Settings</a>
+					<form class="logout" action="/logout" method="POST">
+						<button type="submit">Log out</button>
+					</form>
+				</div>
 			</div>
 		</div>
 	{/if}
@@ -58,33 +61,40 @@
 			display: flex;
 			gap: 16px;
 		}
-		.settingsContainer {
-			position: relative;
-			button {
-				margin: 0px;
-				border: none;
-				background: none;
-				padding: none;
-			}
-			.modal {
-				z-index: 5;
-				background-color: var(--modalBg);
-				width: 200px;
-				transform: translateX(calc(-50% - 2rem));
-				position: absolute;
-				display: none;
-				flex-direction: column;
-				&.visible{
-					display: flex;
-					gap: 8px;
-					padding: 16px;
+		.rhs {
+			display: flex;
+			gap: 16px;
+			align-items: center;
+			.settingsContainer {
+				position: relative;
+				display: flex;
+				align-items: center;
+				button {
+					margin: 0px;
+					border: none;
+					background: none;
+					padding: none;
 				}
-			}
-			&:focus {
 				.modal {
-					display: flex;
-					gap: 8px;
-					padding: 16px;
+					z-index: 5;
+					background-color: var(--modalBg);
+					width: 200px;
+					transform: translateX(calc(-50% - 2rem)) translateY(75%);
+					position: absolute;
+					display: none;
+					flex-direction: column;
+					&.visible{
+						display: flex;
+						gap: 8px;
+						padding: 16px;
+					}
+				}
+				&:focus {
+					.modal {
+						display: flex;
+						gap: 8px;
+						padding: 16px;
+					}
 				}
 			}
 		}
