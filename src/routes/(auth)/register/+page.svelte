@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { enhance } from '$app/forms'
+	import TextInput from '$lib/client/ui/TextInput.svelte'
 
 	export let form
 </script>
@@ -7,19 +8,17 @@
 <h1>Register</h1>
 
 <form action="?/register" method="POST" use:enhance>
-	<div>
-		<label for="username">Username</label>
-		<input id="username" name="username" type="text" required />
-	</div>
-
-	<div>
-		<label for="password">Password</label>
-		<input id="password" name="password" type="password" required />
-	</div>
-
 	{#if form?.user}
 		<p class="error">Username is taken.</p>
 	{/if}
 
+	{#if form?.passwordInequality}
+		<p class="error">Passwords do not match!</p>
+	{/if}
+	<TextInput name="username" placeholder="Username" required />
+
+	<TextInput name="password" placeholder="Password" type="password" required />
+
+	<TextInput name="confirm-password" placeholder="Confirm Password" type="password" required />
 	<button type="submit">Register</button>
 </form>

@@ -37,7 +37,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 	// find the user based on the session
 	let user = await db.session.findUnique({
 		where: { id: session },
-		select: { expiresAt: true, User: {select: {username: true, role: true}}},
+		select: { expiresAt: true, User: {select: {username: true, role: true, avatar: true, displayName: true}}},
 	})
 
 	if (!user) {
@@ -61,11 +61,15 @@ export const handle: Handle = async ({ event, resolve }) => {
 	}
 	user = user?.User
 
+	console.log(user)
+
 	// if `user` exists set `events.local`
 	if (user) {
 		event.locals.user = {
 			name: user.username,
 			role: user.role.name,
+			displayName: user.displayName !== "" ? user.displayName : user.username,
+			avatar: user.avatar,
 		}
 	}
 	// load page as normal

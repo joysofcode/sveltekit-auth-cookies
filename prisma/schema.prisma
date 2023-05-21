@@ -11,9 +11,11 @@ datasource db {
 }
 
 model User {
-  id           String @id @default(uuid())
+  id           String @id @unique @default(uuid())
   username     String @unique
   passwordHash String
+  avatar       String @default("/poop.png")
+  displayName  String @default("")
 
   sessions Session[]
 
@@ -25,7 +27,7 @@ model User {
 }
 
 model Session {
-  id        String   @id @default(uuid())
+  id        String   @id @unique @default(uuid())
   createdAt DateTime @default(now())
   expiresAt DateTime
   userId    String

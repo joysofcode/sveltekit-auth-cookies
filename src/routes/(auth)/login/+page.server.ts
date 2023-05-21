@@ -51,8 +51,6 @@ export const actions = {
 			}
 		})
 
-		console.log(session)
-
 		cookies.set('session', session.id, {
 			// send cookie for every page
 			path: '/',

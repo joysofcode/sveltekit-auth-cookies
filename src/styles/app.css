@@ -25,7 +25,8 @@ label {
 }
 
 input,
-button {
+button,
+.modal {
 	padding: 1rem;
 	font: inherit;
 	color: inherit;

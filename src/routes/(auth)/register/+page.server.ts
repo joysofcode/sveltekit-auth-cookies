@@ -22,6 +22,7 @@ export const actions = {
 		const data = await request.formData()
 		const username = data.get('username')
 		const password = data.get('password')
+		const confPass = data.get('confirm-password')
 
 		if (
 			typeof username !== 'string' ||
@@ -40,11 +41,14 @@ export const actions = {
 			return fail(400, { user: true })
 		}
 
+		if (password !== confPass) {
+			return fail(400, { passwordInequality: true })
+		}
+
 		await db.user.create({
 			data: {
 				username,
 				passwordHash: await bcrypt.hash(password, 10),
-				userAuthToken: crypto.randomUUID(),
 				role: { connect: { name: Roles.USER } },
 			},
 		})
