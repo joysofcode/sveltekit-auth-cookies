@@ -7,3 +7,4 @@ node_modules
 .env.*
 !.env.example
 dev.db
+prisma/users.db
