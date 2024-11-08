@@ -13,7 +13,7 @@ enum Roles {
 export const load = async ({ locals }) => {
 	// redirect user if logged in
 	if (locals.user) {
-		throw redirect(302, '/')
+		redirect(302, '/');
 	}
 }
 
@@ -49,6 +49,6 @@ export const actions = {
 			},
 		})
 
-		throw redirect(303, '/login')
+		redirect(303, '/login');
 	},
 }
