@@ -14,7 +14,7 @@ git clone https://github.com/joysofcode/sveltekit-auth-cookies.git
 
 ### 📦️ Install dependencies
 
-You can use `npm` or `yarn`.
+You can use `npm` or `pnpm`.
 
 ```sh
 pnpm i

@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { applyAction, enhance } from '$app/forms'
+	import { enhance } from '$app/forms'
 
-	export let form
+	let { form } = $props()
 </script>
 
 <h1>Login</h1>

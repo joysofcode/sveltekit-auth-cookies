@@ -6,7 +6,7 @@ import { db } from '$lib/server/database'
 export const load = async ({ locals }) => {
 	// redirect user if logged in
 	if (locals.user) {
-		throw redirect(302, '/')
+		redirect(302, '/');
 	}
 }
 
@@ -58,6 +58,6 @@ export const actions = {
 		})
 
 		// redirect the user
-		throw redirect(302, '/')
+		redirect(302, '/');
 	},
 }

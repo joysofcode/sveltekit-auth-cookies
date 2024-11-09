@@ -1,8 +1,9 @@
 <script lang="ts">
 	import { enhance } from '$app/forms'
 	import { page } from '$app/stores'
-
 	import '../styles/app.css'
+
+	let { children } = $props()
 </script>
 
 <svelte:head>
@@ -25,5 +26,5 @@
 </nav>
 
 <main>
-	<slot />
+	{@render children?.()}
 </main>
